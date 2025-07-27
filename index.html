@@ -223,7 +223,7 @@
   const chatBox = document.getElementById('chatBox');
   const themeBtn = document.getElementById('themeBtn');
 
-  // ---------- Theme ----------
+  //Theme
   function applyTheme(theme) {
     const isLight = theme === 'light';
     document.body.classList.toggle('light', isLight);
@@ -239,7 +239,7 @@
     applyTheme(stored);
   })();
 
-  // ---------- SHA-256 ----------
+  //sha-256
   function sha256(str) {
     const buf = new TextEncoder().encode(str);
     return crypto.subtle.digest("SHA-256", buf).then(hash =>
@@ -249,7 +249,7 @@
     );
   }
 
-  // ---------- Local DB ----------
+  //local db
   function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
   function saveUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
   function setCurrentUser(u) { localStorage.setItem(CURRENT_KEY, u); }
@@ -313,7 +313,7 @@
     if (c) loadAppForUser(c);
   };
 
-  // ---------- Chat / Math ----------
+  // chat or math
   function sendMessage() {
     const input = document.getElementById('userInput');
     const text = input.value.trim();
@@ -325,7 +325,7 @@
     saveToHistory(user, { role: 'user', text });
     input.value = "";
 
-    // Thinking indicator
+    //thinking indi
     const thinking = document.createElement('div');
     thinking.classList.add('message', 'bot', 'thinking');
     thinking.textContent = "AI is thinking...";
@@ -352,7 +352,7 @@
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 
-  // Typing animation
+  //typing anumation
   function typeMessage(text, sender) {
     const div = document.createElement('div');
     div.classList.add('message', sender);
