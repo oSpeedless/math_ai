@@ -173,7 +173,7 @@
     <label>Password</label>
     <input type="password" id="loginPassword" placeholder="Enter password" />
     <button onclick="login()">Login</button>
-    <p style="margin-top:10px;">No account? <span class="link" onclick="showRegister()">Register</span></p>
+    <p style="margin-top:10px;">Don't Have Account? <span class="link" onclick="showRegister()">Register</span></p>
   </div>
   <div id="registerView" class="hidden">
     <h2>Register</h2>
@@ -194,6 +194,7 @@
     </div>
     <div class="topbar-right">
       <button onclick="toggleTheme()" title="Toggle theme" id="themeBtn">🌙</button>
+      <button onclick="rickroll()" title="Secret">Don't Click🤫</button>
       <button onclick="logout()">Logout</button>
     </div>
   </div>
@@ -201,8 +202,8 @@
   <div class="chat-box" id="chatBox"></div>
 
   <div class="input-area">
-    <input type="text" id="userInput" placeholder="Type your math problem..." />
-    <button onclick="sendMessage()">Send</button>
+    <input type="text" id="userInput" placeholder="Type your math problem..." 
+           onkeydown="if(event.key==='Enter'){sendMessage()}" />
   </div>
 
   <div class="history-controls">
@@ -286,7 +287,7 @@
     const users = getUsers();
     const hashed = await sha256(password);
     const found = users.find(u => u.username === username && u.password === hashed);
-    if (!found) return alert('Invalid login.');
+    if (!found) return alert('Wrong Username or Password.');
     setCurrentUser(username);
     loadAppForUser(username);
   }
@@ -373,14 +374,12 @@
     return "Sorry, I can only solve math problems.";
   }
 
-  // Very basic linear equation solver: ax + b = c
   function solveForX(expr) {
     const parts = expr.split("=");
     if (parts.length !== 2) return "Can't solve that equation.";
     try {
       let left = parts[0].replace(/\s+/g,'');
       const right = eval(parts[1]);
-      // match ax+b or ax-b
       const match = left.match(/([0-9.]*)x([+\-][0-9.]+)?/i);
       if (match){
         let a = match[1] ? parseFloat(match[1]) : 1;
@@ -389,13 +388,6 @@
       }
     } catch {}
     return "Can't solve that equation.";
-  }
-
-  function speak(text) {
-    const speech = new SpeechSynthesisUtterance(text);
-    speech.rate = 1;
-    speech.pitch = 1;
-    window.speechSynthesis.speak(speech);
   }
 
   function saveToHistory(user, msg) {
@@ -439,13 +431,11 @@
   }
 
   function showAbout() {
-    alert("Math AI Pro by Srijan Das (Class 7, Roll 23).\nFeatures: Theme toggle, Login, Secure Password, History Export, Equation Solver, Typing Animation.");
+    alert("Math AI Pro by Srijan Das from Class 7, Roll 23.\nFeatures: Toggle Theme, Login, History Export,Solves Math, Clear History, View History, About Section, Don't Click 🤫 Button, Typing Animation.");
   }
-
-  // SECRET SHORTCUT
-  document.addEventListener('keydown', e => {
-    if (e.key.toLowerCase()==='m') alert("Made by Srijan Das (Class 7, Roll 23)");
-  });
+  function rickroll() {
+  window.open("https://youtu.be/xvFZjo5PgG0?si=kP12tOjugk3YKHAg", "_blank");
+}
 </script>
 </body>
 </html>
