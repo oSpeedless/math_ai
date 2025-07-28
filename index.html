@@ -201,12 +201,10 @@
 
   <div class="chat-box" id="chatBox"></div>
 
-  <!-- Input with Send Button -->
-  <div class="input-area">
-    <input type="text" id="userInput" placeholder="Type your math problem..." 
-           onkeydown="if(event.key==='Enter'){sendMessage()}" />
-    <button onclick="sendMessage()">Send</button>
-  </div>
+<div class="input-area">
+  <input type="text" id="userInput" placeholder="Type your math problem..." onkeydown="if(event.key==='Enter')sendMessage()" />
+  <button onclick="sendMessage()">Send</button>
+</div>
 
   <div class="history-controls">
     <button onclick="showHistory()">View History</button>
@@ -260,7 +258,7 @@
   function loadHistory(u) { return JSON.parse(localStorage.getItem(getHistoryKey(u)) || '[]'); }
   function saveHistory(u, h) { localStorage.setItem(getHistoryKey(u), JSON.stringify(h)); }
 
-  // Auth UI
+  // ---------- Auth UI ----------
   const authContainer = document.getElementById('authContainer');
   const loginView = document.getElementById('loginView');
   const registerView = document.getElementById('registerView');
@@ -433,11 +431,11 @@
   }
 
   function showAbout() {
-    alert("Math AI Pro by Srijan Das from Class 7, Roll 23.\nFeatures: Toggle Theme, Login, History Export, Solves Math, Clear History, View History, About Section, Don't Click 🤫 Button, Typing Animation.");
+    alert("Math AI Pro by Srijan Das from Class 7, Roll 23.\nFeatures: Toggle Theme, Login, History Export,Solves Math, Clear History, View History, About Section, Don't Click 🤫 Button, Typing Animation.");
   }
   function rickroll() {
-    window.open("https://youtu.be/xvFZjo5PgG0?si=kP12tOjugk3YKHAg", "_blank");
-  }
+  window.open("https://youtu.be/xvFZjo5PgG0?si=kP12tOjugk3YKHAg", "_blank");
+}
 </script>
 </body>
 </html>
