@@ -223,7 +223,7 @@
   const chatBox = document.getElementById('chatBox');
   const themeBtn = document.getElementById('themeBtn');
 
-  //Theme
+  //theme
   function applyTheme(theme) {
     const isLight = theme === 'light';
     document.body.classList.toggle('light', isLight);
@@ -239,7 +239,7 @@
     applyTheme(stored);
   })();
 
-  //sha-256
+
   function sha256(str) {
     const buf = new TextEncoder().encode(str);
     return crypto.subtle.digest("SHA-256", buf).then(hash =>
@@ -249,7 +249,6 @@
     );
   }
 
-  //local db
   function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
   function saveUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
   function setCurrentUser(u) { localStorage.setItem(CURRENT_KEY, u); }
@@ -258,7 +257,6 @@
   function loadHistory(u) { return JSON.parse(localStorage.getItem(getHistoryKey(u)) || '[]'); }
   function saveHistory(u, h) { localStorage.setItem(getHistoryKey(u), JSON.stringify(h)); }
 
-  // ---------- Auth UI ----------
   const authContainer = document.getElementById('authContainer');
   const loginView = document.getElementById('loginView');
   const registerView = document.getElementById('registerView');
@@ -439,3 +437,4 @@
 </script>
 </body>
 </html>
+
